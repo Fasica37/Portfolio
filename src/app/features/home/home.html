@@ -1,0 +1,168 @@
+<section class="hero-section">
+  <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+    <div class="badge glass">Top-Rated Developer</div>
+    <h1 class="hero-title">
+      Crafting <span class="gradient-text">Premium</span> <br>
+      Digital Solutions.
+    </h1>
+    <p class="hero-subtitle">
+      Senior Full Stack Developer specializing in <strong>Flutter</strong> and <strong>.NET Core</strong>.
+      Delivering clean, maintainable code for startups and enterprises.
+    </p>
+  </div>
+</section>
+
+<!-- Advanced Bento Grid -->
+<section class="bento-container" id="about">
+  <div class="bento-grid-wrapper">
+
+    <!-- Experience Card -->
+    <div class="bento-card experience glass" data-aos="zoom-in" data-aos-delay="100">
+      <div class="card-tag">Core Expertise</div>
+      <div class="card-content">
+        <h2>5+ Years</h2>
+        <p>Full-stack mastery in <strong>Flutter</strong> and <strong>.NET Core</strong>. Building high-performance,
+          scalable systems.</p>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="bento-card stats glass" data-aos="zoom-in" data-aos-delay="200">
+      <div class="stats-grid">
+        @for (stat of stats(); track stat.label) {
+        <div class="stat-item">
+          <span class="stat-value" [style.color]="stat.color">{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Education/Badge -->
+    <div class="bento-card upwork glass">
+      <div class="top-rated-badge">
+        🏆 Top Rated
+      </div>
+      <p>Top 10% on Upwork</p>
+    </div>
+
+    <!-- Certification / Speciality -->
+    <div class="bento-card special glass">
+      <h3>50k+</h3>
+      <p>Total App Downloads</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section class="projects-section" id="projects">
+  <div class="section-header" data-aos="fade-up">
+    <h2 class="gradient-text">Featured Applications</h2>
+    <p>Premium mobile solutions published on Global App Stores.</p>
+  </div>
+
+  <div class="projects-grid">
+    @for (project of projects(); track project.id) {
+    <div class="project-card glass" (mouseenter)="playPreview(previewVideo)" (mouseleave)="pausePreview(previewVideo)"
+      (click)="selectedProject.set(project)" data-aos="fade-up">
+
+      <!-- Video/Thumbnail Overlay -->
+      <div class="project-media">
+        <video #previewVideo [src]="getSafeUrl(project.videoUrl)" [poster]="project.thumbnailUrl" muted loop playsinline
+          class="project-video"></video>
+        <div class="video-overlay">
+          <span class="play-icon">▶</span>
+          <span class="preview-label">Live Preview</span>
+        </div>
+      </div>
+
+      <div class="project-info">
+        <h3>{{ project.title }}</h3>
+        <p class="description">{{ project.description }}</p>
+
+        <div class="tech-tags">
+          @for (tech of project.techStack; track tech) {
+          <span class="tech-tag">{{ tech }}</span>
+          }
+        </div>
+
+        <div class="store-links">
+          @if (project.appStoreUrl) {
+          <a [href]="project.appStoreUrl" target="_blank" class="store-btn apple" aria-label="App Store"
+            (click)="$event.stopPropagation()">
+            <svg viewBox="0 0 384 512" width="18" fill="currentColor">
+              <path
+                d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 21.8-88.5 21.8-11.4 0-51.1-19-81.6-19C71 142.1 0 200.7 0 301.3c0 41.1 11.1 82.5 32.9 144.2 16.9 47.7 39.2 92 74.4 92 31.2 0 42.4-23 79.5-23s48.3 23 79.5 23c31.2 0 54.4-44.1 72.8-96.1 18.4-51.9 26.5-124 26.5-124.7a1.6 1.6 0 0 0-1-1.3c-.6-.2-36.9-13.84-35.9-47.8zM249.1 71c31.1-39.1 27.5-73.4 27.5-73.4s-32.9 1.4-63.5 39.1c-30.6 37.7-27.5 73.4-27.5 73.4s31.1 0 63.5-39.1z" />
+            </svg>
+            <span>App Store</span>
+          </a>
+          }
+          @if (project.playStoreUrl) {
+          <a [href]="project.playStoreUrl" target="_blank" class="store-btn google" aria-label="Play Store"
+            (click)="$event.stopPropagation()">
+            <svg viewBox="0 0 512 512" width="18" fill="currentColor">
+              <path
+                d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.2 60.1 60.1L104.6 499z" />
+            </svg>
+            <span>Play Store</span>
+          </a>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact" data-aos="fade-up">
+  <div class="contact-card glass">
+    <div class="contact-header">
+      <h2 class="gradient-text">Let's Connect</h2>
+      <p>Have a project in mind? Reach out and let's build something amazing together.</p>
+    </div>
+
+    @if (submitSuccess()) {
+      <div class="success-message">
+        <div class="success-icon">✓</div>
+        <h3>Message Sent!</h3>
+        <p>Thanks for reaching out. I'll get back to you shortly.</p>
+      </div>
+    } @else {
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name" placeholder="Your Name" 
+                   [class.error]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" placeholder="your@email.com"
+                   [class.error]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" formControlName="message" rows="5" placeholder="Tell me about your project..."
+                    [class.error]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="contactForm.invalid || isSubmitting()">
+          @if (isSubmitting()) {
+            <span class="loader"></span> Sending...
+          } @else {
+            Send Message
+          }
+        </button>
+      </form>
+    }
+  </div>
+</section>
+
+<!-- Detailed Project Modal -->
+@if (selectedProject()) {
+<app-project-modal [project]="selectedProject()" (close)="selectedProject.set(null)" />
+}
