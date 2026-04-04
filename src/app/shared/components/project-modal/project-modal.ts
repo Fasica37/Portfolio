@@ -14,10 +14,14 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
         
         <div class="modal-body">
           <div class="video-container">
-            <video [src]="getSafeUrl(project()?.videoUrl)" 
-                   controls 
-                   autoplay 
-                   class="main-video"></video>
+            @if (project()?.videoUrl) {
+              <video [src]="getSafeUrl(project()?.videoUrl)" 
+                     controls 
+                     autoplay 
+                     class="main-video"></video>
+            } @else {
+              <img [src]="project()?.thumbnailUrl" [alt]="project()?.title" class="main-img">
+            }
           </div>
           
           <div class="project-details">
@@ -83,16 +87,20 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
       z-index: 10;
     }
     .video-container {
-      width: 100%;
-      aspect-ratio: 16/9;
       background: #000;
       border-radius: 12px;
       overflow: hidden;
       margin-bottom: 2rem;
+      max-height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .main-video {
-      width: 100%;
-      height: 100%;
+    .main-video, .main-img {
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      display: block;
     }
     .tech-stack {
       display: flex;
@@ -113,6 +121,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
       line-height: 1.8;
       font-size: 1.1rem;
       margin-bottom: 2.5rem;
+      text-align: justify;
     }
     .modal-actions {
       display: flex;
@@ -142,7 +151,7 @@ export class ProjectModalComponent {
   project = input<Project | null>(null);
   close = output<void>();
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) { }
 
   getSafeUrl(url: string | undefined): SafeUrl {
     if (!url) return '';

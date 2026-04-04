@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "portfolio-app": {
+    "fasica-zewdie-portfolio": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -19,6 +19,8 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/favicon.ico",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -62,10 +64,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "portfolio-app:build:production"
+              "buildTarget": "fasica-zewdie-portfolio:build:production"
             },
             "development": {
-              "buildTarget": "portfolio-app:build:development"
+              "buildTarget": "fasica-zewdie-portfolio:build:development"
             }
           },
           "defaultConfiguration": "development"
